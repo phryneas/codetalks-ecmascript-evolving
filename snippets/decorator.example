@@ -1,0 +1,21 @@
+@defineElement('num-counter')
+class Counter extends HTMLElement {
+  @observed #x = 0;
+
+  @bound
+  #clicked() {
+    this.#x++;
+  }
+
+  constructor() {
+    super();
+    this.onclick = this.#clicked;
+  }
+
+  connectedCallback() { this.render(); }
+
+  @bound
+  render() {
+    this.textContent = this.#x.toString();
+  }
+}
